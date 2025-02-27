@@ -69,7 +69,7 @@ int main(void) {
         printf("error executing get_serial_number(): %i\n", error);
         return error;
     }
-    printf("serial number: 0x%" PRIx64 "\n", serial_number);
+    //printf("serial number: 0x%" PRIx64 "\n", serial_number);
     //
     // If temperature offset and/or sensor altitude compensation
     // is required, you should call the respective functions here.
@@ -91,7 +91,8 @@ int main(void) {
     float temperature = 0.0;
     float relative_humidity = 0.0;
     uint16_t repetition = 0;
-    for (repetition = 0; repetition < 50; repetition++) {
+    //for (repetition = 0; repetition < 50; repetition++) {
+    for (; ;) {
         //
         // Slow down the sampling to 0.2Hz.
         //
@@ -121,9 +122,9 @@ int main(void) {
         }
         //
         // Print results in physical units.
-        printf("CO2 concentration [ppm]: %u\n", co2_concentration);
-        printf("Temperature [°C]: %.2f\n", temperature);
-        printf("Relative Humidity [RH]: %.2f\n", relative_humidity);
+        printf("{\"co2_concentration_ppm\": \"%u\",", co2_concentration);
+        printf("\"temperature_celsius\": \"%.2f\",", temperature);
+        printf("\"relatove_humidity\": \"%.2f\"}\n", relative_humidity);
     }
 
     return NO_ERROR;
