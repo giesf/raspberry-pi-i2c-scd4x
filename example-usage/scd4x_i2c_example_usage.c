@@ -71,9 +71,8 @@ int main(void) {
         return error;
     }
 
-    uint16_t asc_enabled = 0;
-    scd4x_get_automatic_self_calibration_enabled(&asc_enabled);
-    printf("asc_enabled: %u\n", asc_enabled);
+    scd4x_set_automatic_self_calibration_enabled(0);
+    
     //printf("serial number: 0x%" PRIx64 "\n", serial_number);
     //
     // If temperature offset and/or sensor altitude compensation
