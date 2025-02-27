@@ -5,7 +5,7 @@ import {$} from "bun"
 async function main(){
   const ls = spawn('./measure');
   const hostname = await $`hostname`.text();
-  ls.stdout.on('data', (data) => {
+  ls.stdout.on('data', async (data) => {
     const data = JSON.parse(data);
     const entries = Object.entries(data);
     const timestamp = new Date().valueOf()
@@ -33,7 +33,7 @@ async function main(){
     console.log(`stdout: ${data}`);
   });
   
-  ls.stderr.on('data', (data) => {
+  ls.stderr.on('data', async (data) => {
     console.error(`stderr: ${data}`);
   });
   
