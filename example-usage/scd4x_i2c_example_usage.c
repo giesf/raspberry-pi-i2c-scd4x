@@ -47,7 +47,7 @@ int main(void) {
     int16_t error = NO_ERROR;
     sensirion_i2c_hal_init();
     scd4x_init(SCD41_I2C_ADDR_62);
-
+    
     uint64_t serial_number = 0;
     sensirion_hal_sleep_us(30000);
     // Ensure sensor is in clean state
@@ -63,12 +63,17 @@ int main(void) {
     if (error != NO_ERROR) {
         printf("error executing reinit(): %i\n", error);
     }
+    
     // Read out information about the sensor
     error = scd4x_get_serial_number(&serial_number);
     if (error != NO_ERROR) {
         printf("error executing get_serial_number(): %i\n", error);
         return error;
     }
+
+    uint16_t asc_enabled = 0;
+    scd4x_get_automatic_self_calibration_enabled(&asc_enabled);
+    printf("asc_enabled: %u\n", asc_enabled);
     //printf("serial number: 0x%" PRIx64 "\n", serial_number);
     //
     // If temperature offset and/or sensor altitude compensation
