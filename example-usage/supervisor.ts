@@ -7,3 +7,4 @@ async function main(){
     console.log(line); // Hello World!
   }
 }
+main();
