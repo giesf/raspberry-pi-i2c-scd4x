@@ -9,7 +9,7 @@ async function main(){
     const data = JSON.parse(data);
     const entries = Object.entries(data);
     const timestamp = new Date().valueOf()
-    const jsonL = entries.map([metricName, metricValue]=>{
+    const jsonL = entries.map(([metricName, metricValue])=>{
       return JSON.stringify({
         metrics: {
           __name__: Bun.env.METRIC_PREFIX + metricName,
