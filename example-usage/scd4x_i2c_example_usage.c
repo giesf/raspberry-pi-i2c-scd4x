@@ -96,7 +96,7 @@ int main(void) {
         //
         // Slow down the sampling to 0.2Hz.
         //
-        sensirion_hal_sleep_us(5000000);
+        sensirion_hal_sleep_us(30000000);
         error = scd4x_get_data_ready_status(&data_ready);
         if (error != NO_ERROR) {
             printf("error executing get_data_ready_status(): %i\n", error);
