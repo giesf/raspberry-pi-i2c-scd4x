@@ -6,8 +6,8 @@ async function main(){
   const ls = spawn('./measure');
   const hostname = await $`hostname`.text();
   ls.stdout.on('data', async (data) => {
-    const data = JSON.parse(data);
-    const entries = Object.entries(data);
+    const jsonData = JSON.parse(data);
+    const entries = Object.entries(jsonData);
     const timestamp = new Date().valueOf()
     const jsonL = entries.map(([metricName, metricValue])=>{
       return JSON.stringify({
