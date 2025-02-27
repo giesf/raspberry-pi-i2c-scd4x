@@ -17,7 +17,7 @@ async function main(){
           __name__: Bun.env.METRIC_PREFIX + metricName,
           hostname
         },
-        values: [metricValue],
+        values: [parseFloat(metricValue)],
         timestamps: [timestamp]
       })
     }).join("\n");
