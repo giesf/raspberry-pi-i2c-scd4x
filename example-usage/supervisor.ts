@@ -4,7 +4,7 @@ import {$} from "bun"
 
 async function main(){
   const ls = spawn('./measure');
-  const hostname = await $`hostname`.text();
+  const hostname = (await $`hostname`.text()).replaceAll("\n","");
   ls.stdout.on('data', async (data) => {
     console.log(`Received Measurement: ${data}`);
 
@@ -36,6 +36,7 @@ async function main(){
             },
         })
     console.log("Report: ",res.ok?"OK":"ERROR")
+    console.log("Debug: ",res)
   });
   
   ls.stderr.on('data', async (data) => {
