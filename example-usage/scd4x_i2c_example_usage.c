@@ -90,7 +90,7 @@ int main(void) {
     uint16_t co2_concentration = 0;
     float temperature = 0.0;
     float relative_humidity = 0.0;
-    uint16_t repetition = 0;
+  //  uint16_t repetition = 0;
     //for (repetition = 0; repetition < 50; repetition++) {
     for (; ;) {
         //
@@ -124,7 +124,7 @@ int main(void) {
         // Print results in physical units.
         printf("{\"co2_concentration_ppm\": \"%u\",", co2_concentration);
         printf("\"temperature_celsius\": \"%.2f\",", temperature);
-        printf("\"relatove_humidity\": \"%.2f\"}\n", relative_humidity);
+        printf("\"relative_humidity\": \"%.2f\"}\n", relative_humidity);
     }
 
     return NO_ERROR;
