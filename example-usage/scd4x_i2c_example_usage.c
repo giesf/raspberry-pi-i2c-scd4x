@@ -128,6 +128,9 @@ int main(void) {
         // Print results in physical units.
         printf("{\"co2_concentration_ppm\": \"%u\",", co2_concentration);
         printf("\"temperature_celsius\": \"%.2f\",", temperature);
+        float relative_humidity_adjusted = relative_humidity/2;
+
+        printf("\"relative_humidity_adjusted\": \"%.2f\",", relative_humidity_adjusted);
         printf("\"relative_humidity\": \"%.2f\"}\n", relative_humidity);
         fflush(stdout);
 
