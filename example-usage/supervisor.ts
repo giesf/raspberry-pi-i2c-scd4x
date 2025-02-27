@@ -36,7 +36,6 @@ async function main(){
             },
         })
     console.log("Report: ",res.ok?"OK":"ERROR")
-    console.log("Debug: ",res)
   });
   
   ls.stderr.on('data', async (data) => {
