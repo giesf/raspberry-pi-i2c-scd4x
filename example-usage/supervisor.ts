@@ -1,10 +1,21 @@
 
-import { $ } from "bun";
+import { spawn } from "child_process";
 
 
 async function main(){
-  for await (let line of $`./measure`.lines()) {
-    console.log(line); // Hello World!
-  }
+  const ls = spawn('./measure');
+  
+  ls.stdout.on('data', (data) => {
+    console.log(`stdout: ${data}`);
+  });
+  
+  ls.stderr.on('data', (data) => {
+    console.error(`stderr: ${data}`);
+  });
+  
+  ls.on('close', (code) => {
+    console.log(`child process exited with code ${code}`);
+  });
+  
 }
 main();
