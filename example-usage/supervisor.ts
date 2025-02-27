@@ -13,7 +13,7 @@ async function main(){
     const timestamp = new Date().valueOf()
     const jsonL = entries.map(([metricName, metricValue])=>{
       return JSON.stringify({
-        metrics: {
+        metric: {
           __name__: Bun.env.METRIC_PREFIX + metricName,
           hostname
         },
