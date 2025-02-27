@@ -6,6 +6,8 @@ async function main(){
   const ls = spawn('./measure');
   const hostname = await $`hostname`.text();
   ls.stdout.on('data', async (data) => {
+    console.log(`Received Measurement: ${data}`);
+
     const jsonData = JSON.parse(data);
     const entries = Object.entries(jsonData);
     const timestamp = new Date().valueOf()
@@ -18,10 +20,14 @@ async function main(){
         values: [metricValue],
         timestamps: [timestamp]
       })
-    })
+    }).join("\n");
+    console.log(`Converted to JSONL: ${jsonL}`);
+
     const server = Bun.env.VM_SERVER
     const user = Bun.env.VM_USER
     const password = Bun.env.VM_PASSWORD
+    console.log(`Reporting to Server: ${server}`);
+
     const res = await fetch(server + "/api/v1/import", {
             method: "POST",
             body: jsonL,
@@ -29,8 +35,7 @@ async function main(){
                 Authorization: "Basic " + btoa(user + ":" + password),
             },
         })
-    console.log(res.ok)
-    console.log(`stdout: ${data}`);
+    console.log("Report: ",res.ok?"OK":"ERROR")
   });
   
   ls.stderr.on('data', async (data) => {
