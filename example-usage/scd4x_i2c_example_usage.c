@@ -125,6 +125,8 @@ int main(void) {
         printf("{\"co2_concentration_ppm\": \"%u\",", co2_concentration);
         printf("\"temperature_celsius\": \"%.2f\",", temperature);
         printf("\"relative_humidity\": \"%.2f\"}\n", relative_humidity);
+        fflush(stdout);
+
     }
 
     return NO_ERROR;
